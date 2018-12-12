@@ -1,0 +1,22 @@
+{
+  "name": "DotNetCore.AdminLTE.Scaffold",
+  "authors": [
+    "roy <jnmcluo@163.com>"
+  ],
+  "description": "Roy's dot net core(2.1) MVC scaffold project use AdminLTE",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v3.3.7",
+    "font-awesome": "Font-Awesome#v4.7.0",
+    "jquery-slimscroll": "v1.3.8"
+  }
+}
