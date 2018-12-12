@@ -17,6 +17,8 @@
   "dependencies": {
     "bootstrap": "v3.3.7",
     "font-awesome": "Font-Awesome#v4.7.0",
-    "jquery-slimscroll": "v1.3.8"
+    "jquery-slimscroll": "v1.3.8",
+    "iCheck": "1.0.2",
+    "layer": "3.0"
   }
 }

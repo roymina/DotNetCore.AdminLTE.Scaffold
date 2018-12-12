@@ -10,14 +10,17 @@ namespace DotNetCore.AdminLTE.Scaffold.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IOptions<MenuConfiguration> _appConfiguration;
-        public HomeController(IOptions<MenuConfiguration> appConfiguration) {
+        private readonly IOptions<Menu> _appConfiguration;
+        public HomeController(IOptions<Menu> appConfiguration) {
             _appConfiguration = appConfiguration;
         }
 
         public IActionResult Index()
         {
+           
               return View();
         }
+
+        
     }
 }

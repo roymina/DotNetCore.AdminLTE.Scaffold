@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCore.AdminLTE.Scaffold.Models
 {
-    public class MenuConfiguration
+    public class Menu
     {
         public List<MainNode> MenuItems { get; set; }
     }

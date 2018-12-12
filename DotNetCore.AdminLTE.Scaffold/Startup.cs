@@ -28,6 +28,7 @@ namespace DotNetCore.AdminLTE.Scaffold
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,12 +47,13 @@ namespace DotNetCore.AdminLTE.Scaffold
             }
             //使用静态文件
             app.UseStaticFiles();
+            app.UseSession();
             //使用Mvc，设置默认路由
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=User}/{action=Login}");
             });
         }
     }
