@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DotNetCore.AdminLTE.Scaffold.Models;
+using DotNetCore.AdminLTE.Scaffold.Models.Configs;
 using DotNetCore.AdminLTE.Scaffold.Utility;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace DotNetCore.AdminLTE.Scaffold.Controllers
 {
     public class UserController : Controller
     {
-        
+        private readonly AppSettings _appSettings;
+        public UserController(IOptions<AppSettings> appSettings)
+        {
+            _appSettings = appSettings.Value;
+        }
+
         public IActionResult Login()
         {
+            ViewBag.appName = _appSettings.ApplicationName;
             return View();
         }
         [HttpPost]
@@ -20,15 +28,15 @@ namespace DotNetCore.AdminLTE.Scaffold.Controllers
         {
             if (ModelState.IsValid)
             {
-                //检查用户信息 
+                //check user status 
                 if (loginModel.Username == "aaa" && loginModel.Password =="aaa")
                 {
-                    //记录Session
+                    //login Session
                     HttpContext.Session.Set("CurrentUser", Helper.Object2Bytes(loginModel));
-                    //跳转到系统首页
+                    //redirect to home page if user verified
                     return RedirectToAction("Index", "Home");
                 }
-                ViewBag.ErrorInfo = "用户名或密码错误";
+                ViewBag.ErrorInfo = "username or password invalid";
                 return View();
             }
             ViewBag.ErrorInfo = ModelState.Values.First().Errors[0].ErrorMessage;

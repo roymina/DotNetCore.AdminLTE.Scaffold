@@ -6,10 +6,10 @@ namespace DotNetCore.AdminLTE.Scaffold.Utility
     {
 
         /// <summary>
-        /// 将对象转换为byte数组
+        /// Convert object to binary 
         /// </summary>
-        /// <param name="obj">被转换对象</param>
-        /// <returns>转换后byte数组</returns>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public static byte[] Object2Bytes(object obj)
         {
             string json = JsonConvert.SerializeObject(obj);
@@ -18,10 +18,10 @@ namespace DotNetCore.AdminLTE.Scaffold.Utility
         }
 
         /// <summary>
-        /// 将byte数组转换成对象
+        /// Convert binary to object 
         /// </summary>
-        /// <param name="buff">被转换byte数组</param>
-        /// <returns>转换完成后的对象</returns>
+        /// <param name="buff"></param>
+        /// <returns></returns>
         public static object Bytes2Object(byte[] buff)
         {
             string json = System.Text.Encoding.UTF8.GetString(buff);
@@ -29,7 +29,7 @@ namespace DotNetCore.AdminLTE.Scaffold.Utility
         }
 
         /// <summary>
-        /// 将byte数组转换成对象
+        /// Convert binary to object(Generic)
         /// </summary>
         /// <param name="buff">被转换byte数组</param>
         /// <returns>转换完成后的对象</returns>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNetCore.AdminLTE.Scaffold.Models.Configs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,19 +15,22 @@ namespace DotNetCore.AdminLTE.Scaffold
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
         public Startup(IHostingEnvironment env)
         {
-            new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true).Build();
-
-         
+            var builder = new ConfigurationBuilder()
+                  .SetBasePath(env.ContentRootPath)
+                  .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                  .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: true)
+                  .AddEnvironmentVariables();
+            Configuration = builder.Build(); 
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
             services.AddMvc();
             services.AddSession();
         }
@@ -36,19 +40,20 @@ namespace DotNetCore.AdminLTE.Scaffold
         {
             loggerFactory.AddConsole();
 
+            // error handler in development env
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                //生产环境异常处理
+                // error handler in production env
                 app.UseExceptionHandler("/Shared/Error");
             }
-            //使用静态文件
+            //use static files
             app.UseStaticFiles();
             app.UseSession();
-            //使用Mvc，设置默认路由
+            //use mvc, define routes
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
