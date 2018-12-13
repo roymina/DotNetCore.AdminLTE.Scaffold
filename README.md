@@ -8,7 +8,7 @@ A .NetCore(V2.1)+AdminLTE StartKit Project
 
 # How to use:
 1. Download this repository
-2. `Ctrl-F` search&Replace `DotNetCore.AdminLTE.Scaffold` in entire project with your project name
+2. `Ctrl-F` search `DotNetCore.AdminLTE.Scaffold` in entire project, Replace all by your project name
 
 # What it doesn't shiped:
 - Data Operation
